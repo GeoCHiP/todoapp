@@ -1,0 +1,26 @@
+{% extends "todos/base.html" %}
+{% block content%}
+
+{% if request.user.is_authenticated %}
+<p>{{ request.user }}</p>
+<a href="{% url 'todos:logout' %}">Logout</a>
+{% else %}
+<a href="{% url 'todos:login' %}">Login</a>
+{% endif %}
+
+<hr>
+
+<h1>My To Do List</h1>
+
+<a href="{% url 'todos:task_create' %}">Add task</a>
+
+<ul>
+  {% for task in task_list %}
+  <li>{{ task.is_completed }} {{ task.created_date }} {{ task.task_title }} <a href="{% url 'todos:task_update' task.id %}">Edit</a> <a href="{% url 'todos:task_delete' task.id %}">Delete</a></li>
+  {% empty %}
+  <li>No items in the list</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
+
