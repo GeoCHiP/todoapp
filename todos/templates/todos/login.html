@@ -4,10 +4,12 @@
 <h3>Login</h3>
 
 <form method="post" action="{% url 'todos:login' %}">
-{% csrf_token %}
+  {% csrf_token %}
   {{ form.as_p }}
   <input type="submit" value="Login">
 </form>
+
+<p>Don't have an account? <a href="{% url 'todos:register' %}">Register</a></p>
 
 {% endblock content %}
 
