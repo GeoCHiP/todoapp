@@ -6,7 +6,7 @@
 <a href="{% url 'todos:index' %}">Back</a>
 
 <form method="post" action="{% url 'todos:task_create' %}">
-{% csrf_token %}
+  {% csrf_token %}
   {{ form.as_p }}
   <input type="submit">
 </form>

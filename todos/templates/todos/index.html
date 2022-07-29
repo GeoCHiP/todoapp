@@ -14,6 +14,11 @@
 
 <a href="{% url 'todos:task_create' %}">Add task</a>
 
+<form method="get">
+  <input type="text" name="search_string" value="{{ search_string }}">
+  <input type="submit" value="Search">
+</form>
+
 <ul>
   {% for task in task_list %}
   <li>{{ task.is_completed }} {{ task.created_date }} {{ task.task_title }} <a href="{% url 'todos:task_update' task.id %}">Edit</a> <a href="{% url 'todos:task_delete' task.id %}">Delete</a></li>
