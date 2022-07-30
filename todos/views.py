@@ -80,7 +80,7 @@ def task_create(request):
         form = TaskForm()
 
     context = { 'form': form }
-    return render(request, 'todos/task_create.html', context)
+    return render(request, 'todos/task_form.html', context)
 
 
 @login_required
@@ -95,8 +95,8 @@ def task_update(request, task_id):
     else:
         form = TaskForm(instance=task)
 
-    context = { 'task_id': task_id, 'form': form }
-    return render(request, 'todos/task_update.html', context)
+    context = { 'form': form }
+    return render(request, 'todos/task_form.html', context)
 
 
 @login_required
