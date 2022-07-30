@@ -1,5 +1,7 @@
 # To Do App
 
+![screenshot](images/screenshot.png)
+
 A simple full-stack todo application with registration in python using django.
 
 ## Getting started (locally with development server)
