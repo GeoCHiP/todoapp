@@ -5,11 +5,13 @@
   <a href="{% url 'todos:index' %}">&#8592; Back</a>
 </div>
 
-<form method="post" action="">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit">
-</form>
+<div class="card-body">
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="button" type="submit">
+  </form>
+</div>
 
 {% endblock content %}
 

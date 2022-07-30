@@ -1,31 +1,47 @@
 {% extends "todos/base.html" %}
 {% block content%}
 
-{% if request.user.is_authenticated %}
-<p>{{ request.user }}</p>
-<a href="{% url 'todos:logout' %}">Logout</a>
-{% else %}
-<a href="{% url 'todos:login' %}">Login</a>
-{% endif %}
+<div class="header-bar">
+  <div>
+    <h1>Hello {{ request.user|title }}</h1>
+    <h3>You have <i>{{ incomplete_count }}</i> incomplete task{{ incomplete_count|pluralize }}</h3>
+  </div>
 
-<hr>
+  {% if request.user.is_authenticated %}
+  <a href="{% url 'todos:logout' %}">Logout</a>
+  {% else %}
+  <a href="{% url 'todos:login' %}">Login</a>
+  {% endif %}
+</div>
 
-<h1>My To Do List</h1>
 
-<a href="{% url 'todos:task_create' %}">Add task</a>
 
-<form method="get">
-  <input type="text" name="search_string" value="{{ search_string }}">
-  <input type="submit" value="Search">
-</form>
+<div id="search-add-wrapper">
+  <form method="get" style="display: flex; margin-top: 20px;">
+    <input type="text" name="search_string" value="{{ search_string }}">
+    <input class="button" type="submit" value="Search">
+  </form>
+  <a id="add-link" href="{% url 'todos:task_create' %}">&#x2b;</a>
+</div>
 
-<ul>
+<div class="task-list-wrapper">
   {% for task in task_list %}
-  <li>{{ task.is_completed }} {{ task.created_date }} {{ task.task_title }} <a href="{% url 'todos:task_update' task.id %}">Edit</a> <a href="{% url 'todos:task_delete' task.id %}">Delete</a></li>
+  <div class="task-wrapper">
+    <div class="task-title">
+      {% if task.is_completed %}
+      <div class="task-complete-icon"></div>
+      <i><s><a href="{% url 'todos:task_update' task.id %}">{{ task }}</a></s></i>
+      {% else %}
+      <div class="task-incomplete-icon"></div>
+      <a href="{% url 'todos:task_update' task.id %}">{{ task }}</a>
+      {% endif %}
+    </div>
+    <a class="delete-link" href="{% url 'todos:task_delete' task.id %}">&#215;</a>
+  </div>
   {% empty %}
-  <li>No items in the list</li>
+  <h3>No items in the list</h3>
   {% endfor %}
-</ul>
+</div>
 
 {% endblock %}
 
