@@ -8,7 +8,19 @@
 <div class="card-body">
   <form method="post" action="">
     {% csrf_token %}
-    {{ form.as_p }}
+
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    <div class="field-wrapper">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+        {% if field.help_text %}
+        <div class="helptext">{{ field.help_text|safe }}</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
     <input class="button" type="submit" value="Register">
   </form>
   <p>Already have an account? <a href="{% url 'todos:login' %}">Login</a></p>

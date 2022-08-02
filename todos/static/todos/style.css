@@ -90,7 +90,8 @@ a, p {
 input[type=text],
 input[type=password],
 textarea {
-  width: 90%;
+  box-sizing: border-box;
+  width: 100%;
   border: 1px solid #eb796f;
   border-radius: 5px;
   padding: 10px;
@@ -113,5 +114,27 @@ label {
 
 .card-body {
   padding: 20px;
+}
+
+.field-wrapper {
+  color: #4b5156;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.helptext {
+  font-size: 80%;
+  color: #6b7176;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul.errorlist {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 80%;
+  color: red;
 }
 
